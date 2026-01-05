@@ -20,7 +20,7 @@ public class Todo {
         this.importance = Priority.fromlevel(selimportance);
     }
 
-    public int getCountid() {
+    public int getid() {
         return id;
     }
 

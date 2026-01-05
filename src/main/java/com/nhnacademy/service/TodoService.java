@@ -39,7 +39,7 @@ public class TodoService {
             }
             System.out.println("\n");
             for(Todo t : Eunmtodo){
-                System.out.println("["+ t.getCountid() +"] " + t.getTitle() + " | " + t.getHour() +"시간 | " + t.getEnum() +" | " + t.getImportance() +" | [ ]" );
+                System.out.println("["+ t.getid() +"] " + t.getTitle() + " | " + t.getHour() +"시간 | " + t.getEnum() +" | " + t.getImportance() +" | [ ]" );
             }
             System.out.println("\n");
     }    
@@ -64,7 +64,7 @@ public class TodoService {
     
             System.out.println("\n");
             for(Todo t : Importancetodo){
-                System.out.println("["+ t.getCountid() +"] " + t.getTitle() + " | " + t.getHour() +"시간 | " + t.getEnum() +" | " + t.getImportance() +" | [ ]" );
+                System.out.println("["+ t.getid() +"] " + t.getTitle() + " | " + t.getHour() +"시간 | " + t.getEnum() +" | " + t.getImportance() +" | [ ]" );
             }
             System.out.println("\n");
     }    
@@ -85,20 +85,25 @@ public class TodoService {
 
 
         public Todo findById(ArrayList<Todo> todos, int id) {
-            int index = id - 1;
-            if (index < 0 || index >= todos.size()) {
-                throw new TodoNotFoundException(id);
-            }
-            return todos.get(index);
+    for (Todo t : todos) {
+        if (t.getid() == id) {   
+            return t;
         }
+    }
+    throw new TodoNotFoundException(id);
+}
+
 
         public void deleteById(ArrayList<Todo> todos, int id) {
-            int index = id - 1;
-            if (index < 0 || index >= todos.size()) {
-                throw new TodoNotFoundException(id);
-            }
-            todos.remove(index);
+    for (int i = 0; i < todos.size(); i++) {
+        if (todos.get(i).getid() == id) {
+            todos.remove(i);
+            return;
         }
+    }
+    throw new TodoNotFoundException(id);
+}
+
 
 }
 
