@@ -12,6 +12,21 @@ public class Todo {
 
 
 
+    public Todo(int id, String title, int hour, int enumNum, int importanceNum) {
+    this.id = id;
+    this.title = title;
+    this.hour = hour;
+    this.Enum = Category.fromCategory(enumNum);
+    this.importance = Priority.fromlevel(importanceNum);
+    
+    if (id >= Countid) {
+        Countid = id + 1;
+    }
+}
+
+
+
+
     public Todo(String title, int hour, int selEnum, int selimportance){
         this.id = Countid++;
         this.title = title;

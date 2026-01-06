@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.nhnacademy.model.Category;
 import com.nhnacademy.model.Priority;
@@ -15,7 +15,7 @@ import com.nhnacademy.model.Todo;
 public class TodoFile {
     private static final String FILENAME = "todos.csv";
 
-    public static void loadFromFile(ArrayList<Todo> todos) {
+    public static void loadFromFile(List<Todo> todos) {
         File file = new File(FILENAME);
         if (!file.exists()) {
             System.out.println("파일이 없습니다. 빈 리스트로 시작합니다.");
@@ -34,7 +34,7 @@ public class TodoFile {
                 Priority priority = Priority.valueOf(parts[4]);
                 int enumNum = category.ordinal() + 1;     
                 int priNum = priority.ordinal() + 1;   
-                todos.add(new Todo(title, hours, enumNum, priNum));
+                todos.add(new Todo(id,title, hours, enumNum, priNum));
             }
             System.out.println("파일 로드 완료: " + FILENAME + " (" + todos.size() + "건)");
         } catch (IOException e) {
@@ -47,7 +47,7 @@ public class TodoFile {
     }
     
 
-    public static void saveToFile(ArrayList<Todo> todos) {
+    public static void saveToFile(List<Todo> todos) {
          try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILENAME))) {
             for (Todo todo : todos) {
                 String line = todo.getid() + "," + todo.getTitle() + "," + todo.getHour() + "," + todo.getEnum()+","+todo.getImportance();
